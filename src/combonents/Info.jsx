@@ -26,34 +26,48 @@ const Info = () => {
 
   const handleAddToFavorites = () => {
     const existingFavorites = JSON.parse(localStorage.getItem('favorites')) || [];
-    const updatedFavorites = [...existingFavorites, book];
-    localStorage.setItem('favorites', JSON.stringify(updatedFavorites));
-    navigate('/Favorites');
+    const isAlreadyFavorite = existingFavorites.some(favBook => favBook.title === book.title);
+    
+    if (isAlreadyFavorite) {
+      alert('This book is already added to favorite');
+    } else {
+      const updatedFavorites = [...existingFavorites, book];
+      localStorage.setItem('favorites', JSON.stringify(updatedFavorites));
+      navigate('/Favorites');
+    }
   };
 
   const handleMarkAsRead = () => {
     const existingReadBooks = JSON.parse(localStorage.getItem('readBooks')) || [];
-    const updatedReadBooks = [...existingReadBooks, book];
-    localStorage.setItem('readBooks', JSON.stringify(updatedReadBooks));
-    navigate('/Readed');
+    const isAlreadyRead = existingReadBooks.some(readBook => readBook.title === book.title);
+
+    if (isAlreadyRead) {
+      alert('This book is already added to read');
+    } else {
+      const updatedReadBooks = [...existingReadBooks, book];
+      localStorage.setItem('readBooks', JSON.stringify(updatedReadBooks));
+      navigate('/Readed');
+    }
   };
 
   if (!book) return <div className="text-center text-xl font-semibold">Loading...</div>;
+  
 
   return (
     <>
     <Navbar></Navbar>
-    <div className="container mx-auto p-6 bg-white rounded-lg shadow-md mt-10 max-w-2xl">
+    <div className="container mx-auto p-6 bg-white rounded-lg shadow-lg  max-w-2xl mb-12 mt-14">
       <h2 className="text-3xl font-bold text-center text-gray-800">{book.title}</h2>
       <div className='flex justify-center'>
       <img src={book.book_image} className="w-56 h-auto rounded-lg mt-4" />
       </div>
       <h6 className="text-base font-medium mb-2"> {book.author}</h6>
       <p className="mt-4 text-gray-600">{book.description}</p>
-      <a href={book.amazon_product_url}><button className="btn bg-cyan-900 mt-4 text-white" onClick={handleAddToFavorites}>
-      buy it now
-        </button></a>
-
+      <a href={book.amazon_product_url} target="_blank" rel="noopener noreferrer">
+  <button className="btn bg-cyan-900 mt-4 text-white">
+    Buy it now
+  </button>
+</a>
 
 
 

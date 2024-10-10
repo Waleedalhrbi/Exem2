@@ -1,7 +1,8 @@
 import React from 'react'
 import { Link, useNavigate } from 'react-router-dom';
 function Navbar() {
-
+    const navigate = useNavigate();
+    
     const handleLogout = () =>{
         localStorage.removeItem('isLoggedIn');
         localStorage.removeItem('userEmail');

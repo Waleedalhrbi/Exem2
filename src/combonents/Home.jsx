@@ -75,7 +75,7 @@ const Home = () => {
             <div className="p-4">
               <h5 className="text-lg font-semibold mb-2">{book.title}</h5>
               <h6 className="text-base font-medium mb-2"> {book.author}</h6>
-              <p className="text-gray-700 mb-4">{book.description}</p>
+              <p className="text-gray-700 mb-4 h-20">{book.description}</p>
               <button
                 type="button"
                 className="btn bg-cyan-900 text-white"
